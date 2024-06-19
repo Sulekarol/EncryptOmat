@@ -1,13 +1,10 @@
 ﻿using AppKit;
 
-namespace Encryptomat
+internal class Program
 {
-	static class MainClass
-	{
-		static void Main (string [] args)
-		{
-			NSApplication.Init ();
-			NSApplication.Main (args);
-		}
-	}
+    private static void Main(string[] args)
+    {
+        NSApplication.Init();
+        NSApplication.Main(args);
+    }
 }
