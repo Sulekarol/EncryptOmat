@@ -2,6 +2,7 @@
 
 using AppKit;
 using Foundation;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Encryptomat
 {
@@ -65,6 +66,42 @@ namespace Encryptomat
 
             return new string(buffer);
         }
+        partial void Vigenere(NSObject sender)
+        {
+            string inputText = InputTextField.StringValue;
+            string key = KeyTextField.StringValue;
+
+            string encryptedText = VigenereCoder(inputText, key);
+            OutputResult.StringValue = encryptedText;
+
+        }
+
+        private string VigenereCoder(string inputText, string key)
+        {
+ 
+            char[] buffer = inputText.ToCharArray();
+            int textLength = buffer.Length;
+            int keyLength = key.Length;
+            key = key.ToUpper(); 
+
+            for (int i = 0; i < textLength; i++)
+            {
+                char letter = buffer[i];
+
+                if (char.IsLetter(letter))
+                {
+                    char offset = char.IsUpper(letter) ? 'A' : 'a';
+                    int keyIndex = i % keyLength;
+                    int shift = key[keyIndex] - 'A'; 
+                    letter = (char)((letter + shift - offset) % 26 + offset);
+                }
+
+                buffer[i] = letter;
+            }
+            return new string(buffer);
+        }
+
+
 
     }
 }
