@@ -19,6 +19,9 @@ namespace Encryptomat
 		AppKit.NSTextField KeyTextField { get; set; }
 
 		[Outlet]
+		AppKit.NSSegmentedControl ModeSegmentedControl { get; set; }
+
+		[Outlet]
 		AppKit.NSTextFieldCell OutputResult { get; set; }
 
 		[Action ("AES:")]
@@ -30,14 +33,17 @@ namespace Encryptomat
 		[Action ("Copy:")]
 		partial void Copy (Foundation.NSObject sender);
 
+		[Action ("ModeSelector:")]
+		partial void ModeSelector (Foundation.NSObject sender);
+
 		[Action ("Vigenere:")]
 		partial void Vigenere (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (OutputResult != null) {
-				OutputResult.Dispose ();
-				OutputResult = null;
+			if (ModeSegmentedControl != null) {
+				ModeSegmentedControl.Dispose ();
+				ModeSegmentedControl = null;
 			}
 
 			if (InputTextField != null) {
@@ -48,6 +54,11 @@ namespace Encryptomat
 			if (KeyTextField != null) {
 				KeyTextField.Dispose ();
 				KeyTextField = null;
+			}
+
+			if (OutputResult != null) {
+				OutputResult.Dispose ();
+				OutputResult = null;
 			}
 		}
 	}
