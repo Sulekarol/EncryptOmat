@@ -142,8 +142,8 @@ namespace Encryptomat
             string key = KeyTextField.StringValue;
             string result = string.Empty;
 
-            //if (!string.IsNullOrEmpty(inputText) && string.IsNullOrEmpty(key))
-            //{
+            if (!string.IsNullOrEmpty(inputText) && key.Length != 0 )
+            {
                 switch (selectedSegment)
                 {
                 case 0:
@@ -155,13 +155,14 @@ namespace Encryptomat
                 default:
                     break;
                 }
-            //}
-            //else
-            //{
-            //    OutputResult.StringValue = "Proszę wprowadzić prawidłowy klucz.";
-            //}
+                OutputResult.StringValue = result;
+            }
+            else
+            {
+                OutputResult.StringValue = "Proszę wprowadzić prawidłowy klucz.";
+            }
 
-            OutputResult.StringValue = result;
+            
 
         }
 
